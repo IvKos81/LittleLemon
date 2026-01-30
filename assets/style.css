@@ -1,6 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Markazi+Text:wght@400..700&display=swap');
+
+
+body {
+    --text64_34:calc(34px + (64 - 34) * ((100vw - 360px) / (1920 - 360))); /*h1*/
+    --text40_26:calc(26px + (40 - 26) * ((100vw - 360px) / (1920 - 360))); /*subtitle*/
+    --text20_18:calc(20px + (20 - 18) * ((100vw - 360px) / (1920 - 360))); /* section title (h2) */
+
+    /*weeks special categories 16px weight 900*/
+
+    /*card title 18px bold*/ 
+    /* card text 16px  */
+    /* card price 16px medium  */
+    /*titles Markazi Regular*/
+    /*text Karla Regular*/
+
+    --pr-green: #495e57;
+    --pr-yellow: #f4ce14;
+    --sec-pink: #ee9972;
+    --sec-rose: #fbdabb;
+    --high-white: #edefee;
+    --high-black: #333333;
+
+    --pr-green-glass: rgba(73,94,87,0.65);
+    --sec-rose-glass: rgba(251,218,187,0.65);
+    --high-white-glass: rgba(237,239,238,0.65);
+}
+
 h1,h2,h3,h4,h5,h6,p,span,a,li {
     margin: 0 0;
     padding: 0 0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: "Markazi Text", serif;
+    font-optical-sizing: auto;
+}
+
+p, span, a {
+    font-family: "Karla", sans-serif;
 }
 
 header {
@@ -8,7 +46,8 @@ header {
     position: fixed;
     top: 0;
     height: auto;
-    background-color: rgba(255, 255, 255, 0.4);
+    /* background-color: rgba(255, 255, 255, 0.4); */
+    background-color: var(--sec-rose-glass);
 }
 
 nav {
@@ -37,7 +76,8 @@ nav {
     display: block;
     font-size: 20px;
     line-height: 1.4em;
-    color: #000;
+    color: var(--pr-green);
+    font-weight: 600;
     text-decoration: none;
     text-transform: uppercase;
 }
@@ -61,7 +101,7 @@ main>section {
     background: url('./img/intro.webp') center no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    background-color: aqua;
+    backdrop-filter: greyscale(5);
 }
 .promo {
     background: url('./img/menu.webp') center no-repeat;
@@ -97,7 +137,7 @@ main>section {
     align-items: flex-start;
     padding: 20px 60px;
     box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.452);
+    background-color: var(--pr-green);
     border-radius: 16px;
 }
 
@@ -107,7 +147,7 @@ main>section {
 }
 
 .main__title {
-    font-size: 65px;
+    font-size: var(--text64_34);
     line-height: 1em;
     color: #F4CE14;
     text-align: left;
@@ -138,7 +178,10 @@ main>section {
 .section__title {
     font-size: 45px;
     line-height: 1.4em;
-    color: #000;
+    color: var(--pr-green);
+    display: inline-block;
+    padding: 15px;
+    background-color: var(--high-white-glass);
 }
 
 .section__subtitle {
@@ -236,7 +279,7 @@ main>section {
     padding: 30px 15px;
     box-sizing: border-box;
     width: 400px;
-    background-color: #544639;
+    background-color: var(--pr-green);
     border-radius: 16px;
     gap: 30px;
 }
