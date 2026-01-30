@@ -1,0 +1,374 @@
+h1,h2,h3,h4,h5,h6,p,span,a,li {
+    margin: 0 0;
+    padding: 0 0;
+}
+
+header {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+nav {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu__list {
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+}
+
+.menu__point {
+    display: block;
+    padding: 0 15px;
+}
+
+.menu__link {
+    display: block;
+    font-size: 20px;
+    line-height: 1.4em;
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.container {
+    display: block;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+main>section {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    padding: 100px 0;
+    box-sizing: border-box;
+}
+
+.intro {
+    background: url('./img/intro.webp') center no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: aqua;
+}
+.promo {
+    background: url('./img/menu.webp') center no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.menu {
+    background: url('./img/about.webp') center no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.contact {
+    background: url('./img/contact.webp') center no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.intro__wrapper {
+    margin: 100px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.intro__block {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px 60px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.452);
+    border-radius: 16px;
+}
+
+.intro__block-title,
+.intro__block-subtext {
+    width: 500px;
+}
+
+.main__title {
+    font-size: 65px;
+    line-height: 1em;
+    color: #F4CE14;
+    text-align: left;
+}
+
+.subtitle {
+    font-size: 20px;
+    line-height: 1em;
+    color: #fff;
+    text-align: left;
+}
+
+.subtext {
+    font-size: 16px;
+    line-height: 1.4em;
+    color: #fff;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+/* promo-title */
+
+.promo__title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.section__title {
+    font-size: 45px;
+    line-height: 1.4em;
+    color: #000;
+}
+
+.section__subtitle {
+    font-size: 20px;
+    line-height: 1.2em;
+    color: #757575;
+}
+
+
+/*promobox*/
+
+.promo__boxgallery {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.promobox {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 16px;
+}
+
+.promobox__image {
+    width: 100%;
+    height: 150px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.promo__img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.promobox__description {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px 15px;
+    background-color: rgb(185, 185, 185);
+    gap: 30px;
+    box-sizing: border-box;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+.promobox__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.promobox__title {
+    font-size: 18px;
+    line-height: 1.2em;
+    color: #fff;
+}
+
+.promobox__price {
+    font-size: 16px;
+    line-height: 1.2em;
+    color: rgb(168, 110, 1);
+}
+
+.promobox__text {
+    font-size: 16px;
+    line-height: 1.2em;
+    color: #fff;
+}
+
+/*menubox gallery*/
+
+.menubox__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+/*menubox__gallery*/
+
+.menubox__gallery {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+    box-sizing: border-box;
+    width: 400px;
+    background-color: #544639;
+    border-radius: 16px;
+    gap: 30px;
+}
+
+.menuboxgallery__title {
+    font-size: 30px;
+    line-height: 1.2em;
+    color: #fff;
+}
+
+/*menubox*/
+
+.menubox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.menubox__unit {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.menubox__image__wrapper {
+    width: 20%;
+}
+
+.menubox__image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+}
+
+.menubox__description {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.menubox__title {
+    font-size: 20px;
+    line-height: 1.2em;
+    color: #F4CE14;
+}
+.menubox__price {
+    font-size: 16px;
+    line-height: 1.2em;
+    color: #fff;
+}
+
+
+/*contact__wrapper*/
+
+.contact__wrapper {
+    padding: 100px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.contact__title,
+.contact__subtitle {
+    text-align: center;
+}
+
+
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 600px;
+    padding: 50px;
+    background-color: #fffb;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+input:not([type='checkbox']),
+textarea,
+label {
+    width: 100%;
+}
+
+input {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 16px;
+    border: 0.5px solid #000;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #aaaaaa;
+    opacity: 0.75;
+}
+
+textarea, select {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+input[type='submit'] {
+    width: 30%;
+    margin: 0 auto;
+}
+
+label[for="your_date"],
+label[for="your_time"],
+label[for="your_occassion"],
+label[for="your_place"] {
+    display: inline-block;
+    width: 48%;
+}
+
+select {
+    margin-top: 10px;
+    width: 100%
+}
