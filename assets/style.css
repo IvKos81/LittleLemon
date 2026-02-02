@@ -58,6 +58,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .menu__list {
@@ -99,7 +100,7 @@ nav {
     transition: 750ms;
 }
 
-.reserve {
+.reserve, .button {
     display: block;
     padding: 10px 20px;
     border-radius: 16px;
@@ -110,15 +111,67 @@ nav {
     line-height: 1.5em;
 }
 
+.button:hover,
+.button:focus,
 .reserve:hover,
 .reserve:focus {
     color: var(--pr-green);
     background-color: var(--pr-yellow);
 }
 
+.button:active,
 .reserve:active {
     box-shadow: 3px 3px 5px 5px var(--pr-green);
 }
+
+/*mobmenu*/
+
+.mobmenu__hidden {
+    display: inline-flex;
+}
+
+.mob__menu__button {
+    display: none;
+    width: 30px;
+    height: 2px;
+    background-color: var(--pr-green);
+    position: relative;
+    border-width: 0;
+}
+
+.mob__menu__button:before {
+    content: '';
+    display: none;
+    width: 30px;
+    height: 2px;
+    background-color: var(--pr-green);
+    position: absolute;
+    top: -8px;
+    left: 0;
+}
+
+.mob__menu__button:after {
+    content: '';
+    display: none;
+    width: 30px;
+    height: 2px;
+    background-color: var(--pr-green);
+    position: absolute;
+    top: 8px;
+    left: 0;
+}
+
+.mob__menu__button.opened {
+    background-color: transparent;
+}
+.mob__menu__button.opened:before {
+    transform: rotate(45deg) translate3d(5px, 5px, 0px);
+}
+.mob__menu__button.opened:after {
+    transform: rotate(-45deg) translate3d(5px, -5px, 0px);
+}
+
+/*main*/
 
 .container {
     display: block;
@@ -430,8 +483,9 @@ main>section {
 
 /*contact__wrapper*/
 
+
 .contact__wrapper {
-    padding: 100px 0;
+    padding: 0 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -488,7 +542,7 @@ textarea, select {
 }
 
 input[type='submit'] {
-    width: 30%;
+    width: auto;
     margin: 0 auto;
 }
 
@@ -503,6 +557,30 @@ label[for="your_place"] {
 select {
     margin-top: 10px;
     width: 100%
+}
+
+/*footer*/
+
+footer {
+    background-color: var(--sec-rose-glass);
+}
+
+.footer__logo {
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.footer__wrapper {
+    display: block;
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+
+footer h2 {
+    display: block !important;
+    margin: 0 auto;
+    text-align: center;
 }
 
 /*popup*/
@@ -542,6 +620,7 @@ select {
     align-items: center;
     background-color: #fffb;
     border-radius: 16px;
+    height: -webkit-fill-available;
 }
 
 .popup .section__title,
@@ -572,6 +651,11 @@ select {
     background-color: var(--pr-green);
 }
 
+.popup form {
+    gap: 10px;
+    padding: 15px;
+}
+
 form input[type='submit']:focus,
 form input[type='submit']:hover {
     background-color: var(--pr-green);
@@ -581,4 +665,105 @@ form input[type='submit']:hover {
 form input:focus,
 form input:active {
     box-shadow: 3px 3px 5px 5px var(--pr-green-glass);
+}
+
+@media screen and (max-width: 1200px) {
+    nav {
+        max-width: 100vw;
+        width: 100%;
+        margin: 0 auto;
+        padding: 15px 50px;
+        box-sizing: border-box;
+    }
+    .container {
+        max-width: 100vw;
+        width: 100%;
+        padding: 0 50px;
+        box-sizing: border-box;
+    }
+
+    .promo__boxgallery {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .promobox {
+        width: 45%;
+    }
+    form {
+        width: 100%;
+    }
+    
+    .intro__block-title, .intro__block-subtext {
+        width: auto;
+    }
+
+    main>section {
+        height: auto;
+    }
+
+}
+
+@media screen and (max-width: 989px) {
+    .mobmenu__hidden {
+        display: none
+    }
+    .mob__menu__button,
+    .mob__menu__button:before,
+    .mob__menu__button:after {
+        display: block;
+    }
+    #navmenu.menu__list {
+        width: 100%;
+        height: auto;
+        opacity: 1;
+        margin-top: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: var(--high-white);
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .mobmenu__hidden {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        opacity: 0 !important;
+    }
+}
+
+@media screen and (max-width: 589px) {
+    nav {
+        padding: 15px 25px;
+    }
+
+    .container {
+        padding: 0 25px;
+
+    }
+
+    .promo__title {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .promobox {
+        width: 100%;
+    } 
+    form {
+        padding: 10px;
+    }
+    input {
+        margin-top: 5px;
+    }
+    .footer__logo {
+        margin-bottom: 15px;
+    }
 }
