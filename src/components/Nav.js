@@ -1,19 +1,31 @@
+import {BrowserRouter} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Intro from "./Intro";
+import Contact from "./Contact";
+
 function Nav() {
   return (
-    <nav class="desktop__menu">
-            <a href="#" class="logo__link">
+    <BrowserRouter>
+    <nav className="desktop__menu">
+            <a href="#" className="logo__link">
                 <img src="./img/logo.svg" alt="logo" height="50"/>
             </a>
-            <ul id='navmenu' class="menu__list mobmenu__hidden">
-                <li class="menu__point"><a href="#intro" class="menu__link">Intro</a></li>
-                <li class="menu__point"><a href="#promo" class="menu__link">Promo</a></li>
-                <li class="menu__point"><a href="#menu" class="menu__link">Menu</a></li>
-                <li class="menu__point"><a href="#contact" class="menu__link">Contact</a></li>
-                <li class="menu__point"><button popovertarget="mypopup" type='button' class="reserve">Reserve
+            <ul id='navmenu' className="menu__list mobmenu__hidden">
+                <li className="menu__point"><Link to="#intro" className="menu__link">Intro</Link></li>
+                <li className="menu__point"><a href="#promo" className="menu__link">Promo</a></li>
+                <li className="menu__point"><a href="#menu" className="menu__link">Menu</a></li>
+                <li className="menu__point"><Link to="#contact" className="menu__link">Contact</Link></li>
+                <li className="menu__point"><button popovertarget="mypopup" type='button' className="reserve">Reserve
                         table</button></li>
             </ul>
-            <button class='mob__menu__button' type="button"></button>
+            <button className='mob__menu__button' type="button"></button>
         </nav>
+        <Routes>
+          <Route path='#intro' element={<Intro/>} />
+          <Route path='#contact' element={<Contact/>} />
+        </Routes>
+    </BrowserRouter>
   );
 }
 

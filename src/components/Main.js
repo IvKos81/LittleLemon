@@ -1,22 +1,10 @@
+import Intro from "./Intro";
+import Contact from "./Contact";
+
 function MainComp() {
   return (
       <main>
-        <section id='intro' className="intro">
-            <div className="container">
-                <div className="intro__wrapper">
-                    <div className="intro__block intro__block-title">
-                        <h1 className="main__title">Little Lemon</h1>
-                        <p className="subtitle">Chicago</p>
-
-                    </div>
-                    <div className="intro__block intro__block-subtext">
-                        <p className="subtext">We are family owned Mediterranean restaurant focused on traditional recipes
-                            served with a modern twist</p>
-                    </div>
-                    <button type='button' className="reserve" popovertarget="mypopup">Reserve table</button>
-                </div>
-            </div>
-        </section>
+        <Intro/>
         <section id='promo' className="promo">
             <div className="container">
                 <div className="promo__wrapper">
@@ -185,31 +173,7 @@ function MainComp() {
                 </div>
             </div>
         </section>
-        <section id='contact' className="contact">
-            <div className="container">
-                <div className="contact__wrapper">
-                    <h2 className="section__title contact__title">Have any questions?</h2>
-                    <h3 className="section__subtitle contact__subtitle">Feel free to contact us</h3>
-                    <form action="#" method="get">
-                        <label for="your_names">Name*:
-                            <input type="text" name="your_names" e1539175832396placeholder="Your name..." required/>
-                        </label>
-                        <label for="your_mails">E-mail*:
-                            <input type="email" name="your_mails" placeholder="Your e-mail..." required/>
-                        </label>
-                        <label for="your_messages">Message:
-                        </label>
-                        <textarea name="your_messages" id="your_message" cols="30" rows="5"
-                            placeholder="Your message..."></textarea>
-                        <label for="your_agrees">
-                            <input type="checkbox" name="your_agrees" id="your_agree" />
-                            I agree to provide my personal data.
-                        </label>
-                        <input type="submit" value="Send message" />
-                    </form>
-                </div>
-            </div>
-        </section>
+        <Contact/>
     </main>  
     );
 }
