@@ -586,20 +586,20 @@ footer h2 {
 /*popup*/
 
 #mypopup.popup {
-    position: fixed;
+    /* position: fixed; */
     display: block;
-    top: 0;
+    /* top: 0;
     left: 0;
     opacity: 0;
     width: 0;
-    height: 0;
+    height: 0; */
     border-radius: 16px;
     border:1px solid var(--high-black);
     background-color: #fffb;
     overflow: hidden;
-}
+/* }
 
-#mypopup:popover-open {  
+#mypopup:popover-open {   */
     width: 100%;
     height: auto;
     opacity: 1;

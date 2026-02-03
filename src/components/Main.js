@@ -41,7 +41,7 @@ function MainComp() {
                                     Alias ad culpa, officiis praesentium quas minima incidunt magnam commodi sint
                                     reiciendis necessitatibus delectus neque rerum cumque reprehenderit! Deleniti vel
                                     hic soluta!</p>
-                                <button type="button" popovertarget="deliverypopup">Order delivery</button>
+                                <button type="button" popoverTarget="deliverypopup">Order delivery</button>
                             </div>
                         </div>
                         <div className="promobox">
@@ -57,7 +57,7 @@ function MainComp() {
                                     Alias ad culpa, officiis praesentium quas minima incidunt magnam commodi sint
                                     reiciendis necessitatibus delectus neque rerum cumque reprehenderit! Deleniti vel
                                     hic soluta!</p>
-                                <button type="button" popovertarget="deliverypopup">Order delivery</button>
+                                <button type="button" popoverTarget="deliverypopup">Order delivery</button>
                             </div>
                         </div>
                         <div className="promobox">
