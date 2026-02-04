@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function BookingForm() {
+function BookingForm({availableTimes, onDateChange}) {
   const [userDate, setUserDate] = useState(''); 
   const [userTime, setUserTime] = useState(''); 
   const [userGuests, setUserGuests] = useState(''); 
@@ -10,6 +10,13 @@ function BookingForm() {
   const [userMail, setUserMail] = useState(''); 
   const [userMessage, setUserMessage] = useState(''); 
 
+  const [selectedDate, setSelectedDate] = useState('');
+  
+  const handleDateInputChange = (e) => {
+    const date = e.target.value;
+    setSelectedDate(date);
+    onDateChange(date);
+  };
 
   const clearForm = () => {
       setUserDate('');
@@ -32,40 +39,15 @@ function BookingForm() {
     
     <form onSubmit={handleSubmit}>
                 <label htmlFor="your_date">Date*:
-                    <input type="date" name="your_date" value={userDate} onChange={(e)=>setUserDate(e.target.value)} required />
+                    <input type="date" name="your_date" value={selectedDate} onChange={handleDateInputChange} required />
                 </label>
                 <label htmlFor="your_time">Time of arrival*:
                     <input type="time" name="your_time" list="your_timetable" id="your_time" min="09:00" max="23:00"
                         step="1800" value={userTime} onChange={(e)=>setUserTime(e.target.value)} required />
                     <datalist id="your_timetable">
-                        <option value="09:00"></option>
-                        <option value="09:30"></option>
-                        <option value="10:00"></option>
-                        <option value="10:30"></option>
-                        <option value="11:00"></option>
-                        <option value="11:30"></option>
-                        <option value="12:00"></option>
-                        <option value="12:30"></option>
-                        <option value="13:00"></option>
-                        <option value="13:30"></option>
-                        <option value="14:00"></option>
-                        <option value="14:30"></option>
-                        <option value="15:00"></option>
-                        <option value="15:30"></option>
-                        <option value="16:00"></option>
-                        <option value="16:30"></option>
-                        <option value="17:00"></option>
-                        <option value="17:30"></option>
-                        <option value="18:00"></option>
-                        <option value="18:30"></option>
-                        <option value="19:00"></option>
-                        <option value="19:30"></option>
-                        <option value="20:00"></option>
-                        <option value="20:30"></option>
-                        <option value="21:00"></option>
-                        <option value="21:30"></option>
-                        <option value="22:00"></option>
-                        <option value="22:30"></option>
+                       {availableTimes.map(time => (
+                        <option key={time} value={time}>{time}</option>
+                        ))}
                     </datalist>
                 </label>
                 <label htmlFor="your_guests">Number of guests*:
