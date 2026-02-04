@@ -9,21 +9,9 @@ import Menu from './components/Menu';
 import Contact from './components/Contact';
 import Promo from './components/Promo';
 import BookingPage from './components/BookingPage';
-import { useEffect } from 'react';
+
 
 function App() {
-
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://raw.githubusercontent.com/courseraap/capstone/main/api.js';
-    script.async = true;
-    
-    document.body.appendChild(script);
-    
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
 
   return (
     <BrowserRouter>

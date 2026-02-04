@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function BookingForm({availableTimes, onDateChange}) {
+function BookingForm({availableTimes, onDateChange, onSubmit}) {
   const [userDate, setUserDate] = useState(''); 
   const [userTime, setUserTime] = useState(''); 
   const [userGuests, setUserGuests] = useState(''); 
@@ -11,6 +11,13 @@ function BookingForm({availableTimes, onDateChange}) {
   const [userMessage, setUserMessage] = useState(''); 
 
   const [selectedDate, setSelectedDate] = useState('');
+
+   const [formData, setFormData] = useState({
+    date: '',
+    time: '',
+    guests: 1,
+    occasion: ''
+  });
   
   const handleDateInputChange = (e) => {
     const date = e.target.value;
@@ -31,8 +38,12 @@ function BookingForm({availableTimes, onDateChange}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert( `Citizen ${userName} with mail address ${userMail} politely asked book table on ${userDate} at ${userTime}. He will arrive for ${userOccassion} in ${userTableLoc} with ${userGuests} guests. Please pay attention for next message fom him: ${userMessage}`);
-    clearForm();
+    onSubmit(formData).then(success => {
+      if (success) {
+        alert( `Booking is succesful. Citizen ${userName} with mail address ${userMail} politely asked book table on ${userDate} at ${userTime}. He will arrive for ${userOccassion} in ${userTableLoc} with ${userGuests} guests. Please pay attention for next message fom him: ${userMessage}`);
+        clearForm();
+      }
+    });
 }
 
   return (

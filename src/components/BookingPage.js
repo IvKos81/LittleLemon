@@ -1,71 +1,83 @@
-import { useReducer} from "react";
+import { useEffect, useReducer} from "react";
 import BookingForm from "./BookingForm";
+import {fetchAPI, submitAPI} from './../api';
+
 
 function BookingPage() {  
+
   // Функция инициализации
-  const initializeTimes = () => {
-    return ['17:00', '18:00', '19:00', '20:00', '21:00'];
+const initializeTimes = async () => {
+    const today = new Date().toISOString().split('T')[0]; // "2026-02-04"
+    try {
+      // Используем API для получения времени на сегодня
+      const times = await fetchAPI(today);
+      return times || ['17:00', '18:00', '19:00']; // fallback на случай ошибки
+    } catch (error) {
+      console.error('Ошибка при загрузке начального времени:', error);
+      return ['17:00', '18:00', '19:00'];
+    }
   };
   
   // Функция обновления
-  const updateTimes = (state, action) => {
-    const selectedDate = action.payload;
-     if (!selectedDate) {
-      return initializeTimes(); // если дата не выбрана — вернуть стандартное время
+  const updateTimes = async (selectedDate) => {
+    if (!selectedDate) {
+      return await initializeTimes();
     }
-
-    // Создаём объект Date из строки
-    const date = new Date(selectedDate);
-    const dayOfWeek = date.getDay(); // 0 = воскресенье, 1 = понедельник, ..., 6 = суббота
-
-    let availableTimes;
-
-    switch (dayOfWeek) {
-      case 0: // Воскресенье
-        availableTimes = ['16:00', '17:00', '18:00'];
-        break;
-      case 1: // Понедельник
-      case 2: // Вторник  
-      case 3: // Среда
-      case 4: // Четверг
-        availableTimes = ['17:00', '18:00', '19:00'];
-        break;
-      case 5: // Пятница
-      case 6: // Суббота
-        availableTimes = ['17:00', '18:00', '19:00', '20:00', '21:00'];
-        break;
-      default:
-        availableTimes = initializeTimes();
+    
+    try {
+      const times = await fetchAPI(new Date(selectedDate));
+      return times || [];
+    } catch (error) {
+      console.error('Ошибка при загрузке времени для даты:', error);
+      return [];
     }
-
-    console.log(`📅 Дата: ${selectedDate} → День недели: ${dayOfWeek} → Время:`, availableTimes);
-    return availableTimes;
-
   };
   
   // Редуктор
-  const timesReducer = (state, action) => {
+const timesReducer = (state, action) => {
     switch (action.type) {
-      case 'INITIALIZE':
-        return initializeTimes();
-      case 'UPDATE':
-        return updateTimes(state, action);
+      case 'SET_TIMES':
+        return action.payload;
+      case 'LOADING':
+        return []; // или можно показать "Загрузка..."
       default:
         return state;
     }
   };
   
   // useReducer хук
-  const [availableTimes, dispatch] = useReducer(
-    timesReducer, 
-    [], 
-    initializeTimes
-  );
+   const [availableTimes, dispatch] = useReducer(timesReducer, []);
+
+  // Загружаем начальное время при монтировании
+  useEffect(() => {
+    const loadInitialTimes = async () => {
+      dispatch({ type: 'LOADING' });
+      const times = await initializeTimes();
+      dispatch({ type: 'SET_TIMES', payload: times });
+    };
+    
+    loadInitialTimes();
+  }, []);
   
   // Обработчик изменения даты
-  const handleDateChange = (date) => {
-    dispatch({ type: 'UPDATE', payload: date });
+   const handleDateChange = async (date) => {
+    dispatch({ type: 'LOADING' });
+    const times = await updateTimes(date);
+    dispatch({ type: 'SET_TIMES', payload: times });
   };
+
+  // Функция отправки формы
+  const submitForm = async (formData) => {
+    try {
+      const result = await submitAPI(formData);
+      console.log('Форма успешно отправлена:', result);
+      return result;
+    } catch (error) {
+      console.error('Ошибка при отправке формы:', error);
+      return false;
+    }
+  };
+
 
   return (
     
@@ -73,7 +85,7 @@ function BookingPage() {
         <div className="popup__wrapper">
             <h2 className="section__title">Table reservation</h2>
             <h3 className="section__subtitle contact__subtitle">Please fill the form</h3>
-            <BookingForm availableTimes={availableTimes} onDateChange={handleDateChange}/>
+            <BookingForm availableTimes={availableTimes} onDateChange={handleDateChange} onSubmit={submitForm}/>
         </div>
         {/* <button className='close__popup' type="button">X</button> */}
     </section>
