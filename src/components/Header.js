@@ -3,7 +3,7 @@ import Nav from "./Nav";
 function HeaderComp() {
   return (
     <header>
-        <Nav />
+        <Nav/>
     </header>
   );
 }

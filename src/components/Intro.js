@@ -12,7 +12,6 @@ function Intro() {
                         <p className="subtext">We are family owned Mediterranean restaurant focused on traditional recipes
                             served with a modern twist</p>
                     </div>
-                    <button type='button' className="reserve" popoverTarget="mypopup">Reserve table</button>
                 </div>
             </div>
         </section>
