@@ -13,8 +13,8 @@ function Nav() {
                 <li className="menu__point"><Link to="/promo" className="menu__link">Promo</Link></li>
                 <li className="menu__point"><Link to="/menu" className="menu__link">Menu</Link></li>
                 <li className="menu__point"><Link to="/contact" className="menu__link">Contact</Link></li>
-                <li className="menu__point"><Link to='/bookingpage' type='button' className="reserve">Reserve
-                        table</Link></li>
+                <li className="menu__point"><Link to='/bookingpage' type='button' className="reserve">Reserve table</Link></li>
+                {/* <li className="menu__point"><Link to='/confirmationpage' type='button' className="reserve">Confirmation</Link></li> */}
             </ul>
             <MobMenuButton/>
         </nav>

@@ -27,7 +27,7 @@ body {
     --high-white-glass: rgba(237,239,238,0.65);
 }
 
-h1,h2,h3,h4,h5,h6,p,span,a,li {
+h1,h2,h3,h4,h5,h6,p,span,a,ul,li {
     margin: 0 0;
     padding: 0 0;
 }
@@ -184,7 +184,7 @@ nav {
     display: block;
     width: 100vw;
     height: 100vh;
-    padding: 100px 0;
+    padding: 50px 0;
     box-sizing: border-box;
 }
 
@@ -211,7 +211,7 @@ nav {
 }
 
 .intro__wrapper {
-    margin: 100px 0;
+    margin: 50px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;

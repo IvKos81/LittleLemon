@@ -1,9 +1,9 @@
 import { useEffect, useReducer} from "react";
+import { useNavigate } from "react-router-dom";
 import BookingForm from "./BookingForm";
 import {fetchAPI, submitAPI} from './../api';
 
-
-function BookingPage() {  
+function BookingPage({onBookingSubmit}) {  
 
   // Функция инициализации
 const initializeTimes = async () => {
@@ -66,11 +66,15 @@ const timesReducer = (state, action) => {
     dispatch({ type: 'SET_TIMES', payload: times });
   };
 
+
+  const navigate = useNavigate();
   // Функция отправки формы
   const submitForm = async (formData) => {
     try {
       const result = await submitAPI(formData);
       console.log('Форма успешно отправлена:', result);
+      onBookingSubmit(formData);
+      navigate('/confirmationpage');
       return result;
     } catch (error) {
       console.error('Ошибка при отправке формы:', error);

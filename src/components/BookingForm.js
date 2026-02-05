@@ -1,46 +1,68 @@
 import { useState } from "react";
 
-function BookingForm({availableTimes, onDateChange, onSubmit}) {
-  const [userDate, setUserDate] = useState(''); 
-  const [userTime, setUserTime] = useState(''); 
-  const [userGuests, setUserGuests] = useState(''); 
-  const [userOccassion, setUserOccassion] = useState(''); 
-  const [userTableLoc, setUserTableLoc] = useState(''); 
-  const [userName, setUserName] = useState(''); 
-  const [userMail, setUserMail] = useState(''); 
-  const [userMessage, setUserMessage] = useState(''); 
 
-  const [selectedDate, setSelectedDate] = useState('');
+function BookingForm({availableTimes, onDateChange, onSubmit}) {
 
    const [formData, setFormData] = useState({
     date: '',
     time: '',
-    guests: 1,
-    occasion: ''
+    guests: '',
+    occasion: '',
+    tableloc: '',
+    name: '',
+    mail: '',
+    message: '',
+    agree: false
   });
-  
+
   const handleDateInputChange = (e) => {
-    const date = e.target.value;
-    setSelectedDate(date);
-    onDateChange(date);
+    const { name, value, type, checked } = e.target;
+    
+    // Для чекбокса используем checked, для остальных — value
+    const newValue = type === 'checkbox' ? checked : value;
+    
+    setFormData(prev => ({
+      ...prev,
+      [name]: newValue
+    }));
+    
+    // Особая логика для даты — уведомляем родителя
+    if (name === 'your_date') {
+      onDateChange(value);
+    }
   };
 
   const clearForm = () => {
-      setUserDate('');
-      setUserTime('');
-      setUserGuests('');
-      setUserOccassion('');
-      setUserTableLoc('');
-      setUserName('');
-      setUserMail('');
-      setUserMessage('');
+      setFormData({
+        date: '',
+        time: '',
+        guests: '',
+        occasion: '',
+        tableLocation: '',
+        name: '',
+        email: '',
+        message: '',
+        agree: false
+      });
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData).then(success => {
+
+    const bookingData = {
+      date: formData.date,
+      time: formData.time,
+      guests: formData.guests,
+      occassion: formData.occassion,
+      tableloc: formData.tableloc,
+      name: formData.name,
+      mail: formData.mail,
+      message: formData.message,
+      agree: formData.agree,
+    };
+
+    onSubmit(bookingData).then(success => {
       if (success) {
-        alert( `Booking is succesful. Citizen ${userName} with mail address ${userMail} politely asked book table on ${userDate} at ${userTime}. He will arrive for ${userOccassion} in ${userTableLoc} with ${userGuests} guests. Please pay attention for next message fom him: ${userMessage}`);
         clearForm();
       }
     });
@@ -50,11 +72,11 @@ function BookingForm({availableTimes, onDateChange, onSubmit}) {
     
     <form onSubmit={handleSubmit}>
                 <label htmlFor="your_date">Date*:
-                    <input type="date" name="your_date" value={selectedDate} onChange={handleDateInputChange} required />
+                    <input type="date" name="date" value={formData.date} onChange={handleDateInputChange} required />
                 </label>
                 <label htmlFor="your_time">Time of arrival*:
-                    <input type="time" name="your_time" list="your_timetable" id="your_time" min="09:00" max="23:00"
-                        step="1800" value={userTime} onChange={(e)=>setUserTime(e.target.value)} required />
+                    <input type="time" name="time" list="your_timetable" id="your_time" min="09:00" max="23:00"
+                        step="1800" value={formData.time} onChange={handleDateInputChange} required />
                     <datalist id="your_timetable">
                        {availableTimes.map(time => (
                         <option key={time} value={time}>{time}</option>
@@ -62,10 +84,11 @@ function BookingForm({availableTimes, onDateChange, onSubmit}) {
                     </datalist>
                 </label>
                 <label htmlFor="your_guests">Number of guests*:
-                    <input type="number" name="your_guests" min="0" max="6" placeholder="0" value={userGuests} onChange={(e)=>setUserGuests(e.target.value)} required />
+                    <input type="number" name="guests" min="0" max="6" placeholder="0" value={formData.guests} onChange={handleDateInputChange} required />
                 </label>
                 <label htmlFor="your_occassion">Occassion:
-                    <select name="your_occassion" id="occassion" value={userOccassion} onChange={(e)=>setUserOccassion(e.target.value)}>
+                    <select name="occassion" id="occassion" value={formData.occassion} onChange={handleDateInputChange}>
+                        <option value="---">---</option>
                         <option value="Birthday">Birthday</option>
                         <option value="Evening">Evening</option>
                         <option value="Henstag">Henstag</option>
@@ -73,7 +96,8 @@ function BookingForm({availableTimes, onDateChange, onSubmit}) {
                     </select>
                 </label>
                 <label htmlFor="your_place">Table location:
-                    <select name="your_place" id="place" value={userTableLoc} onChange={(e)=>setUserTableLoc(e.target.value)}>
+                    <select name="tableloc" id="place" value={formData.tableloc} onChange={handleDateInputChange}>
+                        <option value="---">---</option>
                         <option value="Open area">Open area</option>
                         <option value="Inner hall">Inner hall</option>
                         <option value="Conservatory">Conservatory</option>
@@ -81,16 +105,16 @@ function BookingForm({availableTimes, onDateChange, onSubmit}) {
                     </select>
                 </label>
                 <label htmlFor="your_name">Name*:
-                    <input type="text" name="your_name" placeholder="Your name..." required value={userName} onChange={(e)=>setUserName(e.target.value)}/>
+                    <input type="text" name="name" placeholder="Your name..." required value={formData.name} onChange={handleDateInputChange}/>
                 </label>
                 <label htmlFor="your_mail">E-mail*:
-                    <input type="email" name="your_mail" placeholder="Your e-mail..." required value={userMail} onChange={(e)=>setUserMail(e.target.value)}/>
+                    <input type="email" name="mail" placeholder="Your e-mail..." required value={formData.mail} onChange={handleDateInputChange}/>
                 </label>
                 <label htmlFor="your_message">Message:
                 </label>
-                <input type="text" name="your_message" id="your_message" placeholder="Your message..." value={userMessage} onChange={(e)=>setUserMessage(e.target.value)}/>
+                <input type="text" name="message" id="your_message" placeholder="Your message..." value={formData.message} onChange={handleDateInputChange}/>
                 <label htmlFor="your_agree">
-                    <input type="checkbox" name="your_agree" id="your_agree" />
+                    <input type="checkbox" name="agree" id="your_agree" checked={formData.agree} onChange={handleDateInputChange}/>
                     I agree to provide my personal data.
                 </label>
                 <input type="submit" value="Send message" />

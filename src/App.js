@@ -1,5 +1,6 @@
 import './App.css';
 import './assets/style.css';
+import { useState } from 'react';
 import HeaderComp from './components/Header';
 import MainComp from './components/Main';
 import FooterComp from './components/Footer';
@@ -9,22 +10,25 @@ import Menu from './components/Menu';
 import Contact from './components/Contact';
 import Promo from './components/Promo';
 import BookingPage from './components/BookingPage';
+import ConfirmationPage from './components/ConfirmationPage';
 
 
 function App() {
-
+  const [bookingData, setBookingData] = useState(null);
   return (
     <BrowserRouter>
     <div className="App">
           <HeaderComp />
           <Routes>
+            <Route path='/' element={<MainComp/>} />
             <Route path='/intro' element={<Intro/>} />
+            <Route path='/promo' element={<Promo/>} />
             <Route path='/promo' element={<Promo/>} />
             <Route path='/menu' element={<Menu/>} />
             <Route path='/contact' element={<Contact/>} />
-            <Route path='/bookingpage' element={<BookingPage/>} />
+            <Route path='/bookingpage' element={<BookingPage onBookingSubmit={setBookingData}/>} />
+            <Route path='/confirmationpage' element={<ConfirmationPage bookingData={bookingData}/>} />
           </Routes>
-          <MainComp />
           <FooterComp />
         </div>
     </BrowserRouter>
