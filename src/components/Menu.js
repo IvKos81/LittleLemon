@@ -1,4 +1,4 @@
-function Menu() {
+function Menu({coldMenu, hotMenu}) {
   return (
       <section id='menu' className="menu">
             <div className="container">
@@ -10,83 +10,37 @@ function Menu() {
                         <div className="menubox__gallery">
                             <h3 className="menuboxgallery__title">Cold meals</h3>
                             <section className="menubox">
-                                <article className="menubox__unit">
-                                    <div className="menubox__image__wrapper">
-                                        <img src="./img/menubox.jpg" alt="dish" className="menubox__image"/>
-                                    </div>
-                                    <div className="menubox__description">
-                                        <h4 className="menubox__title">Chicken Salad</h4>
-                                        <p className="menubox__price"><b>$</b>12.49</p>
-                                    </div>
-                                </article>
-                                <article className="menubox__unit">
-                                    <div className="menubox__image__wrapper">
-                                        <img src="./img/menubox.jpg" alt="dish" className="menubox__image"/>
-                                    </div>
-                                    <div className="menubox__description">
-                                        <h4 className="menubox__title">Tuna salad</h4>
-                                        <p className="menubox__price"><b>$</b>18.49</p>
-                                    </div>
-                                </article>
-                                <article className="menubox__unit">
-                                    <div className="menubox__image__wrapper">
-                                        <img src="./img/menubox.jpg" alt="dish" className="menubox__image"/>
-                                    </div>
-                                    <div className="menubox__description">
-                                        <h4 className="menubox__title">Tortillioni</h4>
-                                        <p className="menubox__price"><b>$</b>11.49</p>
-                                    </div>
-                                </article>
-                                <article className="menubox__unit">
-                                    <div className="menubox__image__wrapper">
-                                        <img src="./img/menubox.jpg" alt="dish" className="menubox__image"/>
-                                    </div>
-                                    <div className="menubox__description">
-                                        <h4 className="menubox__title">Veggy salad</h4>
-                                        <p className="menubox__price"><b>$</b>24.49</p>
-                                    </div>
-                                </article>
+                                {coldMenu.map(cold=>{
+                                    return(
+                                        <article className="menubox__unit" key={cold.id}>
+                                            <div className="menubox__image__wrapper">
+                                                <img src={cold.image} alt="dish" className="menubox__image"/>
+                                            </div>
+                                            <div className="menubox__description">
+                                                <h4 className="menubox__title">{cold.title}</h4>
+                                                <p className="menubox__price"><b>$</b>{cold.price}</p>
+                                            </div>
+                                        </article>
+                                    )
+                                })}
                             </section>
                         </div>
                         <div className="menubox__gallery">
                             <h3 className="menuboxgallery__title">Hot meals</h3>
                             <section className="menubox">
-                                <article className="menubox__unit">
-                                    <div className="menubox__image__wrapper">
-                                        <img src="./img/menubox.jpg" alt="dish" className="menubox__image"/>
-                                    </div>
-                                    <div className="menubox__description">
-                                        <h4 className="menubox__title">Pasta Carbonara</h4>
-                                        <p className="menubox__price"><b>$</b>15.49</p>
-                                    </div>
-                                </article>
-                                <article className="menubox__unit">
-                                    <div className="menubox__image__wrapper">
-                                        <img src="./img/menubox.jpg" alt="dish" className="menubox__image"/>
-                                    </div>
-                                    <div className="menubox__description">
-                                        <h4 className="menubox__title">Pasta Bologneze</h4>
-                                        <p className="menubox__price"><b>$</b>18.49</p>
-                                    </div>
-                                </article>
-                                <article className="menubox__unit">
-                                    <div className="menubox__image__wrapper">
-                                        <img src="./img/menubox.jpg" alt="dish" className="menubox__image"/>
-                                    </div>
-                                    <div className="menubox__description">
-                                        <h4 className="menubox__title">Pasta Fokkacha</h4>
-                                        <p className="menubox__price"><b>$</b>17.49</p>
-                                    </div>
-                                </article>
-                                <article className="menubox__unit">
-                                    <div className="menubox__image__wrapper">
-                                        <img src="./img/menubox.jpg" alt="dish" className="menubox__image"/>
-                                    </div>
-                                    <div className="menubox__description">
-                                        <h4 className="menubox__title">Pasta Salmon</h4>
-                                        <p className="menubox__price"><b>$</b>21.49</p>
-                                    </div>
-                                </article>
+                                {hotMenu.map(hot=>{
+                                    return(
+                                        <article className="menubox__unit" key={hot.id}>
+                                            <div className="menubox__image__wrapper">
+                                                <img src={hot.image} alt="dish" className="menubox__image"/>
+                                            </div>
+                                            <div className="menubox__description">
+                                                <h4 className="menubox__title">{hot.title}</h4>
+                                                <p className="menubox__price"><b>$</b>{hot.price}</p>
+                                            </div>
+                                        </article>
+                                    )
+                                })}
                             </section>
                         </div>
                     </div>

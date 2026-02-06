@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-console.log('index.js загружен');
+console.log('index.js is loaded');
 console.log('root element:', document.getElementById('root'));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
