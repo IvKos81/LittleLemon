@@ -9,10 +9,6 @@ function MainComp() {
   return (
       <main>
         <Intro/>
-        {/* <Promo/>
-        <Menu/>
-        <Contact/>
-        <BookingPage/> */}
       </main>  
     );
 }

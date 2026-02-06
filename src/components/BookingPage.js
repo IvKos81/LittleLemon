@@ -1,6 +1,6 @@
 import { useEffect, useReducer} from "react";
 import { useNavigate } from "react-router-dom";
-import BookingForm from "./BookingForm";
+import BookingForm from "./bookingform/BookingForm";
 import {fetchAPI, submitAPI} from './../api';
 
 function BookingPage({onBookingSubmit}) {  
@@ -13,7 +13,7 @@ const initializeTimes = async () => {
       const times = await fetchAPI(today);
       return times || ['17:00', '18:00', '19:00']; // fallback на случай ошибки
     } catch (error) {
-      console.error('Ошибка при загрузке начального времени:', error);
+      console.error('Error in time loading:', error);
       return ['17:00', '18:00', '19:00'];
     }
   };
@@ -28,7 +28,7 @@ const initializeTimes = async () => {
       const times = await fetchAPI(new Date(selectedDate));
       return times || [];
     } catch (error) {
-      console.error('Ошибка при загрузке времени для даты:', error);
+      console.error('Error in time loading outside date', error);
       return [];
     }
   };
@@ -39,7 +39,7 @@ const timesReducer = (state, action) => {
       case 'SET_TIMES':
         return action.payload;
       case 'LOADING':
-        return []; // или можно показать "Загрузка..."
+        return []; 
       default:
         return state;
     }
@@ -91,7 +91,6 @@ const timesReducer = (state, action) => {
             <h3 className="section__subtitle contact__subtitle">Please fill the form</h3>
             <BookingForm availableTimes={availableTimes} onDateChange={handleDateChange} onSubmit={submitForm}/>
         </div>
-        {/* <button className='close__popup' type="button">X</button> */}
     </section>
 );
 }

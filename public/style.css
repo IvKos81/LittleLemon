@@ -21,6 +21,7 @@ body {
     --sec-rose: #fbdabb;
     --high-white: #edefee;
     --high-black: #333333;
+    --red : #ff0000;
 
     --pr-green-glass: rgba(73,94,87,0.65);
     --sec-rose-glass: rgba(251,218,187,0.65);
@@ -183,7 +184,7 @@ nav {
 .intro, .promo, .contact, .menu, .popup {
     display: block;
     width: 100vw;
-    height: 100vh;
+    height: auto;
     padding: 50px 0;
     box-sizing: border-box;
 }
@@ -640,6 +641,27 @@ footer h2 {
     padding: 15px;
 }
 
+form input[type='date']:focus:invalid + span::after {
+  color: var(--red);
+  content: "Date format is incorrect. Please try again";
+}
+form input[type='time']:focus:invalid + span::after {
+  color: var(--red);
+  content: "Time should be between 17.00 and 23.00";
+}
+form input[type='text']:focus:invalid + span::after {
+  color: var(--red);
+  content: "Your name should have at least 2 letters";
+}
+form input[type='email']:focus:invalid + span::after {
+  color: var(--red);
+  content: "Your email address is incorrect. Please type again";
+}
+form input[type='number']:focus:invalid + span::after {
+  color: var(--red);
+  content: "Amount of guests should be between 1 and 6 persons";
+}
+
 form input[type='submit']:focus,
 form input[type='submit']:hover {
     background-color: var(--pr-green);
@@ -700,6 +722,7 @@ form input:active {
     .mob__menu__button:before,
     .mob__menu__button:after {
         display: block;
+        cursor: pointer;
     }
     #navmenu.menu__list {
         width: 100%;

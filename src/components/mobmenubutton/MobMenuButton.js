@@ -1,20 +1,31 @@
-import { useEffect } from "react";
-
+import { useEffect, useRef} from "react";
 
 function MobMenuButton() {
-useEffect(() => {
-  const script = document.createElement('script');
-  script.src = '/script.js';
-  script.async = true;
-  
-  document.body.appendChild(script);
-  
-  return () => {
-    document.body.removeChild(script);
-  };
-}, []);
+
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    const handleClick = () => {
+      let mobMenu = document.querySelector('.mob__menu__button')
+      let navMenu = document.querySelector('#navmenu');
+      navMenu.classList.toggle('mobmenu__hidden');
+      mobMenu.classList.toggle('opened');
+    };
+
+    const button = buttonRef.current;
+    if (button) {
+      button.addEventListener('click', handleClick);
+    }
+
+    return () => {
+      if (button) {
+        button.removeEventListener('click', handleClick);
+      }
+    };
+  }, []);
+
   return(
-    <button className='mob__menu__button' type="button"></button>
+    <button ref={buttonRef} className='mob__menu__button' type="button"></button>
   )
 }
 
